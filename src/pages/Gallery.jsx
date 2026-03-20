@@ -9,7 +9,7 @@ const Gallery = () => {
                 {[...Array(6)].map((_, i) => (
                     <img
                         key={i}
-                        src={`https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=800`}
+                        src={`https://plus.unsplash.com/premium_photo-1673429738990-2b85964723ad?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGZhYnJpYyUyMHRleHRpbGV8ZW58MHx8MHx8fDA%3D`}
                         alt="Gallery"
                         className="w-full rounded-sm hover:opacity-80 transition-opacity cursor-zoom-in"
                     />

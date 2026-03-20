@@ -1,4 +1,12 @@
+import useSEO from '../hooks/useSEO';
+
 const Blog = () => {
+    useSEO(
+        'Blog & Insights',
+        'Read the latest insights and articles about textile industry trends, linen care, and quality standards from Parekh Linen.',
+        'blog, textile industry, linen care, thread count, organic cotton'
+    );
+    
     const posts = [
         { date: "March 10, 2026", title: "Future of Organic Cotton in India", category: "Trends" },
         { date: "Feb 28, 2026", title: "Maintaining 1000 Thread Count: A Guide", category: "Maintenance" },

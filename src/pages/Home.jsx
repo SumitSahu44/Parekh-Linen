@@ -3,8 +3,14 @@ import About from '../components/sections/About';
 import ProductPreview from '../components/sections/ProductPreview'; // Brief view
 import IndiaMap from '../features/Maps/IndiaMap';
 import Testimonials from '../components/sections/Testimonials';
+import useSEO from '../hooks/useSEO';
 
 const Home = () => {
+    useSEO(
+        'Home',
+        'Parekh Linen - Premium Bedsheets & Fabrics Manufacturer in Kolkata. Quality linens since decades.',
+        'bedsheets, fabrics, linen, Kolkata, premium quality, cotton bedsheets'
+    );
     return (
         <main className="overflow-x-hidden">
             <Hero />

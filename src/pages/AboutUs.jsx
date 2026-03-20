@@ -1,6 +1,12 @@
 import { motion } from 'framer-motion';
+import useSEO from '../hooks/useSEO';
 
 const AboutUs = () => {
+    useSEO(
+        'About Us',
+        'Learn about Parekh Linen - 30+ years of excellence in manufacturing premium bedsheets and fabrics in Kolkata.',
+        'about parekh linen, textile manufacturer Kolkata, history, quality, sustainability'
+    );
     const values = [
         { title: "Quality", desc: "Highest GSM & Thread Count standards." },
         { title: "Legacy", desc: "30+ years in the heart of Kolkata's textile market." },
