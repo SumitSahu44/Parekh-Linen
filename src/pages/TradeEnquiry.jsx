@@ -30,7 +30,7 @@ const TradeEnquiry = () => {
                         transition={{ delay: 0.2 }}
                         className="text-5xl md:text-7xl font-serif text-white mb-6"
                     >
-                        Trade & <span className="italic text-[#C0A080]">Bulk</span> Enquiry
+                        <span className="lowercase">e</span>-Trade & <span className="italic text-[#C0A080]">Bulk</span> Enquiry
                     </motion.h1>
                     <motion.p 
                         initial={{ opacity: 0 }}

@@ -23,7 +23,7 @@ const Hero = () => {
       title: "Premium Linen Collections",
       subtitle: "Crafting Comfort, Delivering Quality"
     },
-    
+
     {
       img: "https://media.istockphoto.com/id/171578874/photo/high-resolution-artist-natural-linen-canvas-grunge-texture.webp?a=1&b=1&s=612x612&w=0&k=20&c=YKjuVxD1OwzOn3hChuMEfOvL4oOuP_avCq72BoeFrQk=",
       title: "Global Export Quality",
@@ -45,7 +45,7 @@ const Hero = () => {
         {slides.map((slide, index) => (
           <SwiperSlide key={index} className="relative w-full h-full">
             {/* Background Image with Overlay */}
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center transition-transform duration-[5000ms] scale-110"
               style={{ backgroundImage: `url(${slide.img})` }}
             >
@@ -68,7 +68,7 @@ const Hero = () => {
                   initial={{ y: 30, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.2, duration: 0.8 }}
-                  className="text-5xl md:text-8xl font-black text-white mb-8 italic uppercase tracking-tighter"
+                  className="text-5xl md:text-8xl font-black text-white mb-8 italic uppercase "
                 >
                   {slide.title} <br />
                   <span className="not-italic text-2xl md:text-4xl font-light text-slate-200 block mt-4">
@@ -82,13 +82,13 @@ const Hero = () => {
                   transition={{ delay: 0.5, duration: 0.6 }}
                   className="flex flex-col md:flex-row gap-4 justify-center items-center"
                 >
-                  <button 
+                  <button
                     onClick={() => navigate('/products')}
                     className="px-10 py-4 bg-[#C0A080] text-white hover:bg-[#a88a6a] transition-all duration-300 rounded-sm font-bold text-xs uppercase tracking-widest shadow-xl shadow-[#C0A080]/20"
                   >
                     Explore Collection
                   </button>
-                  <button 
+                  <button
                     onClick={() => navigate('/contact')}
                     className="px-10 py-4 border border-white text-white hover:bg-white hover:text-black transition-all duration-300 rounded-sm font-bold text-xs uppercase tracking-widest"
                   >

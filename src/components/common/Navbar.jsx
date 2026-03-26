@@ -31,27 +31,26 @@ const Navbar = () => {
     const moreLinks = [
         { name: 'Management', path: '/management' },
         { name: 'Circular', path: '/circular' },
-        { name: 'Book Appointment', path: '/appointment' },
-        { name: 'Tenders', path: '/tender-contract' },
+        { name: 'Visit Appointment', path: '/appointment' },
+        { name: 'Tender & Contract', path: '/tender-contract' },
         { name: 'Careers', path: '/career' },
-        { name: 'India Map', path: '/india-map' },
-        { name: 'Quotation', path: '/quotation' },
+        { name: 'Textile Associates ', path: '/india-map' },
+        { name: 'e-Quotation', path: '/quotation' },
         { name: 'e-Auction', path: '/auction' },
     ];
 
     // Color tokens based on scroll state
-    const textMain   = isScrolled ? 'text-[#1A252F]'       : 'text-white';
-    const textMuted  = isScrolled ? 'text-gray-600'         : 'text-white/90';
-    const textHover  = 'hover:text-[#C0A080]';
-    const hamColor   = isScrolled ? 'bg-[#1A252F]'         : 'bg-white';
+    const textMain = isScrolled ? 'text-[#1A252F]' : 'text-white';
+    const textMuted = isScrolled ? 'text-gray-600' : 'text-white/90';
+    const textHover = 'hover:text-[#C0A080]';
+    const hamColor = isScrolled ? 'bg-[#1A252F]' : 'bg-white';
 
     return (
         <nav
-            className={`fixed w-full z-[100] transition-all duration-500 ease-in-out ${
-                isScrolled
-                    ? 'bg-white/95 backdrop-blur-xl shadow-lg py-3 border-b border-gray-100'
-                    : 'bg-black/20 backdrop-blur-sm py-5'
-            }`}
+            className={`fixed w-full z-[100] transition-all duration-500 ease-in-out ${isScrolled
+                ? 'bg-white/95 backdrop-blur-xl shadow-lg py-3 border-b border-gray-100'
+                : 'bg-black/20 backdrop-blur-sm py-5'
+                }`}
         >
             <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 flex justify-between items-center">
 
@@ -120,7 +119,13 @@ const Navbar = () => {
                                             to={link.path}
                                             className="block px-6 py-3 text-[11px] uppercase tracking-widest font-semibold text-gray-700 hover:bg-[#C0A080] hover:text-white transition-colors whitespace-nowrap"
                                         >
-                                            {link.name}
+                                            {link.name.startsWith('e-') ? (
+                                                <>
+                                                    <span className="lowercase">e</span>-{link.name.substring(2)}
+                                                </>
+                                            ) : (
+                                                link.name
+                                            )}
                                         </Link>
                                     ))}
                                 </motion.div>
@@ -131,13 +136,12 @@ const Navbar = () => {
                     {/* CTA */}
                     <Link
                         to="/trade-enquiry"
-                        className={`ml-2 px-5 xl:px-7 py-2.5 text-[10px] font-bold uppercase tracking-[0.18em] border rounded-sm transition-all duration-400 ${
-                            isScrolled
-                                ? 'bg-[#2C3E50] text-white border-[#2C3E50] hover:bg-transparent hover:text-[#2C3E50]'
-                                : 'bg-white text-[#2C3E50] border-white hover:bg-transparent hover:text-white'
-                        }`}
+                        className={`ml-2 px-5 xl:px-7 py-2.5 text-[10px] font-bold uppercase tracking-[0.18em] border rounded-sm transition-all duration-400 ${isScrolled
+                            ? 'bg-[#2C3E50] text-white border-[#2C3E50] hover:bg-transparent hover:text-[#2C3E50]'
+                            : 'bg-white text-[#2C3E50] border-white hover:bg-transparent hover:text-white'
+                            }`}
                     >
-                        Trade Enquiry
+                        <span className="lowercase">e</span>-Trade Enquiry
                     </Link>
                 </div>
 
@@ -185,9 +189,8 @@ const Navbar = () => {
                                         <Link
                                             to={link.path}
                                             onClick={() => setIsOpen(false)}
-                                            className={`text-2xl sm:text-3xl font-serif tracking-widest transition-colors duration-300 ${
-                                                location.pathname === link.path ? 'text-[#C0A080]' : 'text-white hover:text-[#C0A080]'
-                                            }`}
+                                            className={`text-2xl sm:text-3xl font-serif tracking-widest transition-colors duration-300 ${location.pathname === link.path ? 'text-[#C0A080]' : 'text-white hover:text-[#C0A080]'
+                                                }`}
                                         >
                                             {link.name}
                                         </Link>
@@ -211,7 +214,13 @@ const Navbar = () => {
                                             onClick={() => setIsOpen(false)}
                                             className="text-white/80 text-sm tracking-wider hover:text-[#C0A080] transition-colors py-1"
                                         >
-                                            {link.name}
+                                            {link.name.startsWith('e-') ? (
+                                                <>
+                                                    <span className="lowercase">e</span>-{link.name.substring(2)}
+                                                </>
+                                            ) : (
+                                                link.name
+                                            )}
                                         </Link>
                                     ))}
                                 </div>
@@ -229,7 +238,7 @@ const Navbar = () => {
                                     onClick={() => setIsOpen(false)}
                                     className="block px-10 py-4 border-2 border-[#C0A080] text-[#C0A080] uppercase text-sm font-bold tracking-[0.3em] hover:bg-[#C0A080] hover:text-white transition-all duration-300 text-center"
                                 >
-                                    Trade Enquiry
+                                    <span className="lowercase">e</span>-Trade Enquiry
                                 </Link>
                             </motion.div>
                         </div>

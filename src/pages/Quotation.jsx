@@ -50,7 +50,7 @@ const Quotation = () => {
         <div className="pt-32 pb-20">
             <div className="max-w-5xl mx-auto px-6">
                 <div className="text-center mb-12">
-                    <h2 className="text-4xl font-serif text-[#2C3E50] mb-4">Request a Quotation</h2>
+                    <h2 className="text-4xl font-serif text-[#2C3E50] mb-4"><span className="lowercase">e</span>-Quotation</h2>
                     <p className="text-gray-500">Get competitive quotes for bulk orders with customized specifications</p>
                 </div>
 

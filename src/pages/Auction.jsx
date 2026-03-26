@@ -74,7 +74,7 @@ const Auction = () => {
                 {/* Header */}
                 <div className="text-center mb-16">
                     <h2 className="text-4xl font-serif text-[#2C3E50] mb-4">
-                        e-Auction
+                        <span className="lowercase">e</span>-Auction
                     </h2>
                     <p className="text-gray-500 text-lg mb-8">
                         Bid for premium linens and exclusive collections
@@ -148,7 +148,7 @@ const Auction = () => {
                 {/* How It Works */}
                 <div className="bg-gradient-to-r from-[#2C3E50] to-[#1A252F] text-white py-16 px-10 rounded-lg">
                     <h3 className="text-2xl font-serif text-center mb-12">
-                        How e-Auction Works
+                        How <span className="lowercase">e</span>-Auction Works
                     </h3>
 
                     <div className="grid md:grid-cols-4 gap-10 text-center">

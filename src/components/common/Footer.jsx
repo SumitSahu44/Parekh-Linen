@@ -40,7 +40,7 @@ const Footer = () => {
                         <li><Link to="/management" className="hover:text-[#C0A080] transition-colors">Our Management</Link></li>
                         <li><Link to="/career" className="hover:text-[#C0A080] transition-colors">Career Opportunities</Link></li>
                         <li><Link to="/blog" className="hover:text-[#C0A080] transition-colors">Blog</Link></li>
-                        <li><Link to="/circular" className="hover:text-[#C0A080] transition-colors">Circulars</Link></li>
+                        <li><Link to="/circular" className="hover:text-[#C0A080] transition-colors"><span className="lowercase">e</span>-Circulars</Link></li>
                     </ul>
                 </div>
 
@@ -48,8 +48,8 @@ const Footer = () => {
                     <h4 className="font-bold mb-6 uppercase text-sm tracking-widest text-[#C0A080]">Resources</h4>
                     <ul className="space-y-3 text-gray-400 text-sm">
                         <li><Link to="/products" className="hover:text-[#C0A080] transition-colors">Products</Link></li>
-                        <li><Link to="/quotation" className="hover:text-[#C0A080] transition-colors">Get Quotation</Link></li>
-                        <li><Link to="/auction" className="hover:text-[#C0A080] transition-colors">e-Auction</Link></li>
+                        <li><Link to="/quotation" className="hover:text-[#C0A080] transition-colors"><span className="lowercase">e</span>-Quotation</Link></li>
+                        <li><Link to="/auction" className="hover:text-[#C0A080] transition-colors"><span className="lowercase">e</span>-Auction</Link></li>
                         <li><Link to="/reviews" className="hover:text-[#C0A080] transition-colors">Reviews</Link></li>
                         <li><Link to="/gallery" className="hover:text-[#C0A080] transition-colors">Gallery</Link></li>
                     </ul>
