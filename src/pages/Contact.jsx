@@ -24,7 +24,7 @@ const Contact = () => {
                             <div className="group">
                                 <p className="font-bold text-[#C0A080] mb-2 uppercase text-sm tracking-widest">📍 Location</p>
                                 <p className="text-gray-700 text-lg">Parekh Linen</p>
-                                <p className="text-gray-600">Kolkata, West Bengal, India</p>
+                                <p className="text-gray-600">Kolkata, India</p>
                             </div>
 
                             <div className="group">

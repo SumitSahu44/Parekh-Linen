@@ -62,7 +62,7 @@ const Footer = () => {
 
   <p className="text-gray-400 text-sm mb-3 flex items-center gap-2">
     <FaMapMarkerAlt className="text-[#C0A080]" />
-    Kolkata, West Bengal, India
+    Kolkata, India
   </p>
 
   <p className="text-gray-400 text-sm mb-3 flex items-center gap-2">
