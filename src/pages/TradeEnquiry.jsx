@@ -1,6 +1,52 @@
+import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useForm } from 'react-hook-form';
 
 const TradeEnquiry = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [loading, setLoading] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
+
+    const onSubmit = async (data) => {
+        setLoading(true);
+        setErrorMsg('');
+
+        const formData = new FormData();
+        formData.append("siteId", "ParekhLinen04");
+        formData.append("traderName", data.traderName);
+        formData.append("businessName", data.businessName);
+        formData.append("businessAddress", data.businessAddress);
+        formData.append("gstNo", data.gstNo || "");
+        formData.append("mobileNo", data.mobileNo);
+        formData.append("email", data.email);
+        formData.append("enquiryType", data.enquiryType);
+
+        if (data.gstCertificate && data.gstCertificate.length > 0) {
+            formData.append("gstCertificate", data.gstCertificate[0]);
+        }
+
+        try {
+            const response = await fetch("http://localhost:5000/api/trade-enquiry", {
+                method: "POST",
+                body: formData,
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                setIsSubmitted(true);
+            } else {
+                setErrorMsg(result.message || 'Failed to send enquiry. Please try again.');
+            }
+        } catch (error) {
+            console.error("Submission Error:", error);
+            setErrorMsg('Server error. Please try again later.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="bg-white min-h-screen">
             
@@ -75,77 +121,148 @@ const TradeEnquiry = () => {
                         </div>
 
                         {/* Right: The Form */}
-                 <div className="lg:col-span-2 bg-white p-8 md:p-12 shadow-sm border border-gray-100">
-    <form className="grid md:grid-cols-2 gap-8">
-        {/* 1. Name of the Trader */}
-        <div className="flex flex-col gap-2">
-            <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Name of the Trader</label>
-            <input type="text" className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium uppercase" placeholder="Enter Trader Name" />
-        </div>
+                        <div className="lg:col-span-2 bg-white p-8 md:p-12 shadow-sm border border-gray-100">
+                            {isSubmitted ? (
+                                <motion.div 
+                                    initial={{ opacity: 0, scale: 0.95 }} 
+                                    animate={{ opacity: 1, scale: 1 }} 
+                                    transition={{ duration: 0.4 }}
+                                    className="flex flex-col items-center justify-center h-full text-center py-12"
+                                >
+                                    <div className="w-20 h-20 bg-[#C0A080]/10 rounded-full flex items-center justify-center mb-6">
+                                        <svg className="w-10 h-10 text-[#C0A080]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <h3 className="text-3xl font-serif text-[#2C3E50] mb-4">Thank You!</h3>
+                                    <p className="text-gray-500 max-w-md mx-auto leading-relaxed">
+                                        Your professional inquiry has been received successfully. Our team will review your details and contact you shortly.
+                                    </p>
+                                </motion.div>
+                            ) : (
+                                <form onSubmit={handleSubmit(onSubmit)} className="grid md:grid-cols-2 gap-8" encType="multipart/form-data">
+                                    
+                                    {errorMsg && (
+                                        <div className="md:col-span-2 p-4 bg-red-50 text-red-600 text-sm font-medium border border-red-100 rounded-sm">
+                                            {errorMsg}
+                                        </div>
+                                    )}
 
-        {/* 2. Business Name */}
-        <div className="flex flex-col gap-2">
-            <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Business Name</label>
-            <input type="text" className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium uppercase" placeholder="Enter Business Name" />
-        </div>
+                                    {/* 1. Name of the Trader */}
+                                    <div className="flex flex-col gap-2">
+                                        <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Name of the Trader *</label>
+                                        <input 
+                                            type="text" 
+                                            {...register("traderName", { required: true })}
+                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium uppercase" 
+                                            placeholder="Enter Trader Name" 
+                                        />
+                                        {errors.traderName && <span className="text-red-500 text-[10px]">Required</span>}
+                                    </div>
 
-        {/* 3. Business Address with Pin code */}
-        <div className="flex flex-col gap-2 md:col-span-2">
-            <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Business Address with Pin code</label>
-            <input type="text" className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium uppercase" placeholder="Full Address with Pincode" />
-        </div>
+                                    {/* 2. Business Name */}
+                                    <div className="flex flex-col gap-2">
+                                        <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Business Name *</label>
+                                        <input 
+                                            type="text" 
+                                            {...register("businessName", { required: true })}
+                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium uppercase" 
+                                            placeholder="Enter Business Name" 
+                                        />
+                                        {errors.businessName && <span className="text-red-500 text-[10px]">Required</span>}
+                                    </div>
 
-        {/* 4. GST No. */}
-        <div className="flex flex-col gap-2">
-            <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">GST No.</label>
-            <input type="text" className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium uppercase" placeholder="22AAAAA0000A1Z5" />
-        </div>
+                                    {/* 3. Business Address with Pin code */}
+                                    <div className="flex flex-col gap-2 md:col-span-2">
+                                        <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Business Address with Pin code *</label>
+                                        <input 
+                                            type="text" 
+                                            {...register("businessAddress", { required: true })}
+                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium uppercase" 
+                                            placeholder="Full Address with Pincode" 
+                                        />
+                                        {errors.businessAddress && <span className="text-red-500 text-[10px]">Required</span>}
+                                    </div>
 
-        {/* 5. Mobile No. */}
-        <div className="flex flex-col gap-2">
-            <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Mobile No.</label>
-            <input type="tel" className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium" placeholder="+91 00000 00000" />
-        </div>
+                                    {/* 4. GST No. */}
+                                    <div className="flex flex-col gap-2">
+                                        <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">GST No.</label>
+                                        <input 
+                                            type="text" 
+                                            {...register("gstNo")}
+                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium uppercase" 
+                                            placeholder="22AAAAA0000A1Z5" 
+                                        />
+                                    </div>
 
-        {/* 6. Email id */}
-        <div className="flex flex-col gap-2">
-            <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Email id</label>
-            <input type="email" className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium" placeholder="business@email.com" />
-        </div>
+                                    {/* 5. Mobile No. */}
+                                    <div className="flex flex-col gap-2">
+                                        <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Mobile No. *</label>
+                                        <input 
+                                            type="tel" 
+                                            {...register("mobileNo", { required: true })}
+                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium" 
+                                            placeholder="+91 00000 00000" 
+                                        />
+                                        {errors.mobileNo && <span className="text-red-500 text-[10px]">Required</span>}
+                                    </div>
 
-        {/* 7. Inquiry Type (Roll-down mode) */}
-        <div className="flex flex-col gap-2">
-            <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Inquiry Type</label>
-            <select className="border-b-2 border-gray-100 py-2 bg-transparent outline-none focus:border-[#C0A080] text-sm font-medium cursor-pointer uppercase">
-                <option value="">Select Option</option>
-                <option value="bulk">For Bulk Purchase</option>
-                <option value="retail">For Retail Purchase</option>
-                <option value="jobwork">For Job Work Contract</option>
-                <option value="others">Others</option>
-            </select>
-        </div>
+                                    {/* 6. Email id */}
+                                    <div className="flex flex-col gap-2">
+                                        <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Email id *</label>
+                                        <input 
+                                            type="email" 
+                                            {...register("email", { required: true })}
+                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium" 
+                                            placeholder="business@email.com" 
+                                        />
+                                        {errors.email && <span className="text-red-500 text-[10px]">Required</span>}
+                                    </div>
 
-        {/* 8. Upload GST Certificate */}
-        <div className="flex flex-col gap-2 md:col-span-2">
-            <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Upload GST Certificate</label>
-            <div className="relative border-2 border-dashed border-gray-100 p-6 rounded-sm hover:border-[#C0A080] transition-all bg-gray-50/30 flex flex-col items-center justify-center cursor-pointer">
-                <input type="file" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-                <p className="text-[11px] text-gray-400 font-bold uppercase tracking-wider">Click to upload or drag & drop</p>
-            </div>
-        </div>
+                                    {/* 7. Inquiry Type (Roll-down mode) */}
+                                    <div className="flex flex-col gap-2 md:col-span-2">
+                                        <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Inquiry Type *</label>
+                                        <select 
+                                            {...register("enquiryType", { required: true })}
+                                            className="border-b-2 border-gray-100 py-2 bg-transparent outline-none focus:border-[#C0A080] text-sm font-medium cursor-pointer uppercase"
+                                        >
+                                            <option value="">Select Option</option>
+                                            <option value="For Bulk Purchase">For Bulk Purchase</option>
+                                            <option value="For Retail Purchase">For Retail Purchase</option>
+                                            <option value="For Job Work Contract">For Job Work Contract</option>
+                                            <option value="Others">Others</option>
+                                        </select>
+                                        {errors.enquiryType && <span className="text-red-500 text-[10px]">Required</span>}
+                                    </div>
 
-        {/* Submit Button */}
-        <div className="md:col-span-2 pt-4">
-            <motion.button 
-                whileHover={{ backgroundColor: '#1A252F' }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full bg-[#C0A080] text-white py-5 text-[11px] font-bold uppercase tracking-[0.5em] transition-all shadow-xl"
-            >
-                Send Professional Inquiry
-            </motion.button>
-        </div>
-    </form>
-</div>
+                                    {/* 8. Upload GST Certificate */}
+                                    <div className="flex flex-col gap-2 md:col-span-2">
+                                        <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Upload GST Certificate</label>
+                                        <div className="relative border-2 border-dashed border-gray-100 p-6 rounded-sm hover:border-[#C0A080] transition-all bg-gray-50/30 flex flex-col items-center justify-center cursor-pointer">
+                                            <input 
+                                                type="file" 
+                                                {...register("gstCertificate")}
+                                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" 
+                                            />
+                                            <p className="text-[11px] text-gray-400 font-bold uppercase tracking-wider">Click to upload or drag & drop</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Submit Button */}
+                                    <div className="md:col-span-2 pt-4">
+                                        <motion.button 
+                                            type="submit"
+                                            disabled={loading}
+                                            whileHover={{ backgroundColor: loading ? '#C0A080' : '#1A252F' }}
+                                            whileTap={{ scale: loading ? 1 : 0.98 }}
+                                            className="w-full bg-[#C0A080] text-white py-5 text-[11px] font-bold uppercase tracking-[0.5em] transition-all shadow-xl disabled:opacity-70 disabled:cursor-not-allowed"
+                                        >
+                                            {loading ? "Sending..." : "Send Professional Inquiry"}
+                                        </motion.button>
+                                    </div>
+                                </form>
+                            )}
+                        </div>
                     </div>
                 </div>
             </section>

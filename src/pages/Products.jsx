@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import useSEO from '../hooks/useSEO';
+import { productApi } from '../utils/api';
 
-const allProducts = [
+const staticProducts = [
     { id: 2, name: "Premium Cotton Linen Bedsheet", cat: "Linen Bedsheets", img: "/linen-img/Parekh Linen_page-0002.jpg" },
     { id: 3, name: "Luxury Soft Linen Bedsheet", cat: "Linen Bedsheets", img: "/linen-img/Parekh Linen_page-0003.jpg" },
     { id: 4, name: "Elegant Stripe Linen Bedsheet", cat: "Linen Bedsheets", img: "/linen-img/Parekh Linen_page-0004.jpg" },
@@ -36,11 +38,53 @@ const Products = () => {
     );
     
     const [activeTab, setActiveTab] = useState('All');
-    const categories = ['All', 'Fabrics', 'Bedsheets', 'Linen'];
+    const [products, setProducts] = useState([]);
+    const [categories, setCategories] = useState(['All']);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await productApi.getAll("ParekhLinen04");
+                if (response.data.success && response.data.data.length > 0) {
+                    const dynamicProducts = response.data.data.map(p => ({
+                        id: p._id,
+                        name: p.title,
+                        cat: p.category,
+                        img: `http://localhost:5000/${p.image}`
+                    }));
+                    setProducts(dynamicProducts);
+                    
+                    const dynamicCats = ['All', ...new Set(dynamicProducts.map(p => p.cat))];
+                    setCategories(dynamicCats);
+                } else {
+                    setProducts(staticProducts);
+                    setCategories(['All', 'Fabrics', 'Bedsheets', 'Linen']);
+                }
+            } catch (error) {
+                console.error("Failed to fetch products:", error);
+                setProducts(staticProducts);
+                setCategories(['All', 'Fabrics', 'Bedsheets', 'Linen']);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchProducts();
+    }, []);
 
     const filteredProducts = activeTab === 'All'
-        ? allProducts
-        : allProducts.filter(p => p.cat === activeTab);
+        ? products
+        : products.filter(p => p.cat === activeTab);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex flex-col items-center justify-center bg-white">
+                <AiOutlineLoading3Quarters className="animate-spin text-[#C0A080] mb-4" size={48} />
+                <p className="text-gray-400 font-bold tracking-widest uppercase text-sm">Loading Linen Collection...</p>
+            </div>
+        );
+    }
 
     return (
         <div className="bg-white min-h-screen pt-32 pb-20 px-4 md:px-10">
@@ -73,7 +117,7 @@ const Products = () => {
                     </div>
                 </div>
 
-                {/* 4-Column Grid (Sleek & Low Height) */}
+                {/* 4-Column Grid */}
                 <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
                     <AnimatePresence mode='popLayout'>
                         {filteredProducts.map((p) => (
@@ -86,18 +130,15 @@ const Products = () => {
                                 transition={{ duration: 0.4 }}
                                 className="group cursor-pointer"
                             >
-                                {/* Horizontal Low-Height Card */}
                                 <div className="relative overflow-hidden aspect-[16/10] bg-gray-50 mb-4 shadow-sm group-hover:shadow-md transition-shadow duration-500">
                                     <img 
                                         src={p.img} 
                                         alt={p.name} 
                                         className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
                                     />
-                                    {/* Quick Hover Overlay */}
                                     <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                                 </div>
 
-                                {/* Content Details */}
                                 <div className="space-y-1 px-1">
                                     <div className="flex justify-between items-center">
                                         <p className="text-[9px] text-[#C0A080] uppercase tracking-widest font-bold">
@@ -113,6 +154,11 @@ const Products = () => {
                         ))}
                     </AnimatePresence>
                 </motion.div>
+                {filteredProducts.length === 0 && (
+                    <div className="text-center py-20 text-gray-400 font-serif italic">
+                        No products found in this category.
+                    </div>
+                )}
             </div>
         </div>
     );

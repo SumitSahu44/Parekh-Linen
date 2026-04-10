@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaGavel, FaClock, FaUserPlus, FaShoppingCart } from "react-icons/fa";
 import useSEO from '../hooks/useSEO';
+import { useForm } from 'react-hook-form';
 
 const Auction = () => {
     useSEO(
@@ -67,6 +68,49 @@ const Auction = () => {
         }
     ]);
 
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const [loading, setLoading] = useState(false);
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
+
+    const onSubmit = async (data) => {
+        setLoading(true);
+        setErrorMsg('');
+
+        try {
+            const formData = new FormData();
+            formData.append("siteId", "ParekhLinen04");
+            formData.append("participantName", data.participantName);
+            formData.append("legalBusinessName", data.legalBusinessName);
+            formData.append("businessAddress", data.businessAddress);
+            formData.append("gstNo", data.gstNo || "");
+            formData.append("mobileNo", data.mobileNo);
+            formData.append("email", data.email);
+
+            if (data.gstCertificate && data.gstCertificate.length > 0) {
+                formData.append("gstCertificate", data.gstCertificate[0]);
+            }
+
+            const response = await fetch("http://localhost:5000/api/auction", {
+                method: "POST",
+                body: formData,
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                setIsSubmitted(true);
+            } else {
+                setErrorMsg(result.message || 'Failed to submit participation info. Please try again.');
+            }
+        } catch (error) {
+            console.error("Submission Error:", error);
+            setErrorMsg('Server error. Please try again later.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="pt-32 pb-20 bg-[#FDFBF7]">
             <div className="max-w-7xl mx-auto px-6">
@@ -79,122 +123,154 @@ const Auction = () => {
                     <p className="text-gray-500 text-lg mb-8">
                         Bid for premium linens and exclusive collections
                     </p>
-                  
                 </div>
 
-           <section className="py-20 bg-gray-50 px-6">
-    <div className="max-w-4xl mx-auto">
-        <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="bg-white shadow-2xl border-t-4 border-[#C0A080] rounded-b-xl overflow-hidden"
-        >
-            {/* Header Section */}
-            <div className="bg-[#2C3E50] p-8 text-center text-white">
-                <h2 className="text-3xl font-serif tracking-tight mb-2">e-Auction Participation Form</h2>
-                <p className="text-gray-400 text-xs uppercase tracking-[0.3em] font-medium">Official Trade Enquiry Portal</p>
-            </div>
+                <section className="py-20 bg-gray-50 px-6">
+                    <div className="max-w-4xl mx-auto">
+                        <motion.div 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            className="bg-white shadow-2xl border-t-4 border-[#C0A080] rounded-b-xl overflow-hidden"
+                        >
+                            {/* Header Section */}
+                            <div className="bg-[#2C3E50] p-8 text-center text-white">
+                                <h2 className="text-3xl font-serif tracking-tight mb-2">e-Auction Participation Form</h2>
+                                <p className="text-gray-400 text-xs uppercase tracking-[0.3em] font-medium">Official Trade Enquiry Portal</p>
+                            </div>
 
-            <form className="p-8 md:p-12 space-y-8">
-                <div className="grid md:grid-cols-2 gap-8">
-                    {/* 1. Name of the Participant */}
-                    <div className="flex flex-col gap-2">
-                        <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Name of the Participant *</label>
-                        <input 
-                            type="text" 
-                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold uppercase" 
-                            placeholder="Full Name" 
-                            required 
-                        />
+                            {isSubmitted ? (
+                                <motion.div 
+                                    initial={{ opacity: 0, scale: 0.95 }} 
+                                    animate={{ opacity: 1, scale: 1 }} 
+                                    transition={{ duration: 0.4 }}
+                                    className="p-16 text-center"
+                                >
+                                    <div className="w-20 h-20 bg-[#C0A080]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                                        <svg className="w-10 h-10 text-[#C0A080]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <h3 className="text-3xl font-serif text-[#2C3E50] mb-4">You're In!</h3>
+                                    <p className="text-gray-500 max-w-md mx-auto leading-relaxed">
+                                        Your participation request for the e-Auction has been successfully submitted. We will verify your details and connect with you soon.
+                                    </p>
+                                </motion.div>
+                            ) : (
+                                <form onSubmit={handleSubmit(onSubmit)} className="p-8 md:p-12 space-y-8" encType="multipart/form-data">
+                                    {errorMsg && (
+                                        <div className="p-4 bg-red-50 text-red-600 text-sm font-medium border border-red-100 rounded-sm">
+                                            {errorMsg}
+                                        </div>
+                                    )}
+
+                                    <div className="grid md:grid-cols-2 gap-8">
+                                        {/* 1. Name of the Participant */}
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Name of the Participant *</label>
+                                            <input 
+                                                type="text" 
+                                                {...register("participantName", { required: true })}
+                                                className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold uppercase" 
+                                                placeholder="Full Name" 
+                                            />
+                                            {errors.participantName && <span className="text-red-500 text-[10px]">Required</span>}
+                                        </div>
+
+                                        {/* 2. Legal Name of the Business */}
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Legal Name of the Business *</label>
+                                            <input 
+                                                type="text" 
+                                                {...register("legalBusinessName", { required: true })}
+                                                className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold uppercase" 
+                                                placeholder="Company Name" 
+                                            />
+                                            {errors.legalBusinessName && <span className="text-red-500 text-[10px]">Required</span>}
+                                        </div>
+                                    </div>
+
+                                    {/* 3. Business Address with Pin code */}
+                                    <div className="flex flex-col gap-2">
+                                        <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Business Address with Pin code *</label>
+                                        <input 
+                                            type="text" 
+                                            {...register("businessAddress", { required: true })}
+                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold uppercase" 
+                                            placeholder="Complete Office Address & Pincode" 
+                                        />
+                                        {errors.businessAddress && <span className="text-red-500 text-[10px]">Required</span>}
+                                    </div>
+
+                                    <div className="grid md:grid-cols-3 gap-8">
+                                        {/* 4. GST No. */}
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">GST No.</label>
+                                            <input 
+                                                type="text" 
+                                                {...register("gstNo")}
+                                                className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold uppercase" 
+                                                placeholder="GSTIN Number" 
+                                            />
+                                        </div>
+
+                                        {/* 5. Mobile No. */}
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Mobile No. *</label>
+                                            <input 
+                                                type="tel" 
+                                                {...register("mobileNo", { required: true })}
+                                                className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold" 
+                                                placeholder="+91 00000 00000" 
+                                            />
+                                            {errors.mobileNo && <span className="text-red-500 text-[10px]">Required</span>}
+                                        </div>
+
+                                        {/* 6. Email Id */}
+                                        <div className="flex flex-col gap-2">
+                                            <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Email Id *</label>
+                                            <input 
+                                                type="email" 
+                                                {...register("email", { required: true })}
+                                                className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold" 
+                                                placeholder="official@email.com" 
+                                            />
+                                            {errors.email && <span className="text-red-500 text-[10px]">Required</span>}
+                                        </div>
+                                    </div>
+
+                                    {/* 7. Upload GST Certificate */}
+                                    <div className="flex flex-col gap-4">
+                                        <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Upload GST Certificate (PDF/Image)</label>
+                                        <div className="relative border-2 border-dashed border-gray-100 p-10 rounded-xl hover:border-[#C0A080] transition-all bg-gray-50 flex flex-col items-center justify-center gap-2 group cursor-pointer">
+                                            <input 
+                                                type="file" 
+                                                {...register("gstCertificate")}
+                                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" 
+                                            />
+                                            <svg className="w-8 h-8 text-gray-300 group-hover:text-[#C0A080] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a2 2 0 002 2h12 a2 2 0 002-2v-1M16 8l-4-4m0 0L8 8m4-4v12" />
+                                            </svg>
+                                            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Click to upload document</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Submit Button */}
+                                    <div className="pt-6">
+                                        <motion.button 
+                                            type="submit"
+                                            disabled={loading}
+                                            whileHover={{ scale: loading ? 1 : 1.02 }}
+                                            whileTap={{ scale: loading ? 1 : 0.98 }}
+                                            className="w-full bg-[#2C3E50] text-white py-5 font-black uppercase text-[20px] hover:bg-[#C0A080] transition-all shadow-xl disabled:opacity-70"
+                                        >
+                                            {loading ? "Submitting..." : "Submit Auction Entry"}
+                                        </motion.button>
+                                    </div>
+                                </form>
+                            )}
+                        </motion.div>
                     </div>
-
-                    {/* 2. Legal Name of the Business */}
-                    <div className="flex flex-col gap-2">
-                        <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Legal Name of the Business *</label>
-                        <input 
-                            type="text" 
-                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold uppercase" 
-                            placeholder="Company Name" 
-                            required 
-                        />
-                    </div>
-                </div>
-
-                {/* 3. Business Address with Pin code */}
-                <div className="flex flex-col gap-2">
-                    <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Business Address with Pin code *</label>
-                    <input 
-                        type="text" 
-                        className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold uppercase" 
-                        placeholder="Complete Office Address & Pincode" 
-                        required 
-                    />
-                </div>
-
-                <div className="grid md:grid-cols-3 gap-8">
-                    {/* 4. GST No. */}
-                    <div className="flex flex-col gap-2">
-                        <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">GST No. *</label>
-                        <input 
-                            type="text" 
-                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold uppercase" 
-                            placeholder="GSTIN Number" 
-                            required 
-                        />
-                    </div>
-
-                    {/* 5. Mobile No. */}
-                    <div className="flex flex-col gap-2">
-                        <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Mobile No. *</label>
-                        <input 
-                            type="tel" 
-                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold" 
-                            placeholder="+91 00000 00000" 
-                            required 
-                        />
-                    </div>
-
-                    {/* 6. Email Id */}
-                    <div className="flex flex-col gap-2">
-                        <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Email Id *</label>
-                        <input 
-                            type="email" 
-                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold" 
-                            placeholder="official@email.com" 
-                            required 
-                        />
-                    </div>
-                </div>
-
-                {/* 7. Upload GST Certificate */}
-                <div className="flex flex-col gap-4">
-                    <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Upload GST Certificate (PDF/Image)</label>
-                    <div className="relative border-2 border-dashed border-gray-100 p-10 rounded-xl hover:border-[#C0A080] transition-all bg-gray-50 flex flex-col items-center justify-center gap-2 group cursor-pointer">
-                        <input type="file" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-                        <svg className="w-8 h-8 text-gray-300 group-hover:text-[#C0A080] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a2 2 0 002 2h12 a2 2 0 002-2v-1M16 8l-4-4m0 0L8 8m4-4v12" />
-                        </svg>
-                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Click to upload document</p>
-                    </div>
-                </div>
-
-                {/* Submit Button */}
-                <div className="pt-6">
-                    <motion.button 
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="w-full bg-[#2C3E50] text-white py-5 font-black uppercase text-[20px]  hover:bg-[#C0A080] transition-all shadow-xl"
-                    >
-                        Submit Auction Entry
-                    </motion.button>
-                </div>
-            </form>
-        </motion.div>
-    </div>
-</section>
-
-               
-
+                </section>
             </div>
         </div>
     );
