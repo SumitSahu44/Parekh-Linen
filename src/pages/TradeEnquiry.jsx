@@ -49,28 +49,28 @@ const TradeEnquiry = () => {
 
     return (
         <div className="bg-white min-h-screen">
-            
+
             {/* --- HERO SECTION --- */}
             <section className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-[#1A252F]">
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0 z-0">
-                    <img 
-                        src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=2000" 
-                        alt="Textile Manufacturing" 
+                    <img
+                        src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?q=80&w=2000"
+                        alt="Textile Manufacturing"
                         className="w-full h-full object-cover opacity-40"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#1A252F]/80"></div>
                 </div>
 
                 <div className="relative z-10 text-center px-6">
-                    <motion.span 
+                    <motion.span
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         className="text-[#C0A080] text-xs md:text-sm font-bold tracking-[0.5em] uppercase mb-4 block"
                     >
                         Global Supply Chain Partner
                     </motion.span>
-                    <motion.h1 
+                    <motion.h1
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
@@ -78,7 +78,7 @@ const TradeEnquiry = () => {
                     >
                         <span className="lowercase">e</span>-Trade & <span className="italic text-[#C0A080]">Bulk</span> Enquiry
                     </motion.h1>
-                    <motion.p 
+                    <motion.p
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.4 }}
@@ -89,13 +89,13 @@ const TradeEnquiry = () => {
                 </div>
             </section>
 
-           
+
 
             {/* --- FORM SECTION --- */}
             <section className="py-24 px-6 bg-[#F9FAFB]">
                 <div className="max-w-6xl mx-auto">
                     <div className="grid lg:grid-cols-3 gap-16">
-                        
+
                         {/* Left: Contact Info */}
                         <div className="lg:col-span-1 space-y-12">
                             <div>
@@ -103,8 +103,8 @@ const TradeEnquiry = () => {
                                 <div className="space-y-4 text-[#2C3E50]">
                                     <p className="text-sm leading-relaxed">
                                         <strong>Headquarters:</strong><br />
-                                      KOLKATA, WB, India
-                                      
+                                        KOLKATA, WB, India
+
                                     </p>
                                     <p className="text-sm"><strong>Email:</strong> exports@parekhlinen.com</p>
                                     <p className="text-sm"><strong>Support:</strong> 6353778329</p>
@@ -123,9 +123,9 @@ const TradeEnquiry = () => {
                         {/* Right: The Form */}
                         <div className="lg:col-span-2 bg-white p-8 md:p-12 shadow-sm border border-gray-100">
                             {isSubmitted ? (
-                                <motion.div 
-                                    initial={{ opacity: 0, scale: 0.95 }} 
-                                    animate={{ opacity: 1, scale: 1 }} 
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    animate={{ opacity: 1, scale: 1 }}
                                     transition={{ duration: 0.4 }}
                                     className="flex flex-col items-center justify-center h-full text-center py-12"
                                 >
@@ -141,7 +141,7 @@ const TradeEnquiry = () => {
                                 </motion.div>
                             ) : (
                                 <form onSubmit={handleSubmit(onSubmit)} className="grid md:grid-cols-2 gap-8" encType="multipart/form-data">
-                                    
+
                                     {errorMsg && (
                                         <div className="md:col-span-2 p-4 bg-red-50 text-red-600 text-sm font-medium border border-red-100 rounded-sm">
                                             {errorMsg}
@@ -151,11 +151,11 @@ const TradeEnquiry = () => {
                                     {/* 1. Name of the Trader */}
                                     <div className="flex flex-col gap-2">
                                         <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Name of the Trader *</label>
-                                        <input 
-                                            type="text" 
+                                        <input
+                                            type="text"
                                             {...register("traderName", { required: true })}
-                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium uppercase" 
-                                            placeholder="Enter Trader Name" 
+                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium uppercase"
+                                            placeholder="Enter Trader Name"
                                         />
                                         {errors.traderName && <span className="text-red-500 text-[10px]">Required</span>}
                                     </div>
@@ -163,11 +163,11 @@ const TradeEnquiry = () => {
                                     {/* 2. Business Name */}
                                     <div className="flex flex-col gap-2">
                                         <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Business Name *</label>
-                                        <input 
-                                            type="text" 
+                                        <input
+                                            type="text"
                                             {...register("businessName", { required: true })}
-                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium uppercase" 
-                                            placeholder="Enter Business Name" 
+                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium uppercase"
+                                            placeholder="Enter Business Name"
                                         />
                                         {errors.businessName && <span className="text-red-500 text-[10px]">Required</span>}
                                     </div>
@@ -175,11 +175,11 @@ const TradeEnquiry = () => {
                                     {/* 3. Business Address with Pin code */}
                                     <div className="flex flex-col gap-2 md:col-span-2">
                                         <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Business Address with Pin code *</label>
-                                        <input 
-                                            type="text" 
+                                        <input
+                                            type="text"
                                             {...register("businessAddress", { required: true })}
-                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium uppercase" 
-                                            placeholder="Full Address with Pincode" 
+                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium uppercase"
+                                            placeholder="Full Address with Pincode"
                                         />
                                         {errors.businessAddress && <span className="text-red-500 text-[10px]">Required</span>}
                                     </div>
@@ -187,22 +187,22 @@ const TradeEnquiry = () => {
                                     {/* 4. GST No. */}
                                     <div className="flex flex-col gap-2">
                                         <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">GST No.</label>
-                                        <input 
-                                            type="text" 
+                                        <input
+                                            type="text"
                                             {...register("gstNo")}
-                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium uppercase" 
-                                            placeholder="22AAAAA0000A1Z5" 
+                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium uppercase"
+                                            placeholder="22AAAAA0000A1Z5"
                                         />
                                     </div>
 
                                     {/* 5. Mobile No. */}
                                     <div className="flex flex-col gap-2">
                                         <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Mobile No. *</label>
-                                        <input 
-                                            type="tel" 
+                                        <input
+                                            type="tel"
                                             {...register("mobileNo", { required: true })}
-                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium" 
-                                            placeholder="+91 00000 00000" 
+                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium"
+                                            placeholder="+91 00000 00000"
                                         />
                                         {errors.mobileNo && <span className="text-red-500 text-[10px]">Required</span>}
                                     </div>
@@ -210,19 +210,19 @@ const TradeEnquiry = () => {
                                     {/* 6. Email id */}
                                     <div className="flex flex-col gap-2">
                                         <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Email id *</label>
-                                        <input 
-                                            type="email" 
+                                        <input
+                                            type="email"
                                             {...register("email", { required: true })}
-                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium" 
-                                            placeholder="business@email.com" 
+                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-medium"
+                                            placeholder="business@email.com"
                                         />
                                         {errors.email && <span className="text-red-500 text-[10px]">Required</span>}
                                     </div>
 
-                                    {/* 7. Inquiry Type (Roll-down mode) */}
+                                    {/* 7. Inquiry Type/}
                                     <div className="flex flex-col gap-2 md:col-span-2">
                                         <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Inquiry Type *</label>
-                                        <select 
+                                        <select
                                             {...register("enquiryType", { required: true })}
                                             className="border-b-2 border-gray-100 py-2 bg-transparent outline-none focus:border-[#C0A080] text-sm font-medium cursor-pointer uppercase"
                                         >
@@ -239,10 +239,10 @@ const TradeEnquiry = () => {
                                     <div className="flex flex-col gap-2 md:col-span-2">
                                         <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Upload GST Certificate</label>
                                         <div className="relative border-2 border-dashed border-gray-100 p-6 rounded-sm hover:border-[#C0A080] transition-all bg-gray-50/30 flex flex-col items-center justify-center cursor-pointer">
-                                            <input 
-                                                type="file" 
+                                            <input
+                                                type="file"
                                                 {...register("gstCertificate")}
-                                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" 
+                                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                                             />
                                             <p className="text-[11px] text-gray-400 font-bold uppercase tracking-wider">Click to upload or drag & drop</p>
                                         </div>
@@ -250,7 +250,7 @@ const TradeEnquiry = () => {
 
                                     {/* Submit Button */}
                                     <div className="md:col-span-2 pt-4">
-                                        <motion.button 
+                                        <motion.button
                                             type="submit"
                                             disabled={loading}
                                             whileHover={{ backgroundColor: loading ? '#C0A080' : '#1A252F' }}
