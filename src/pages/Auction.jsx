@@ -10,7 +10,7 @@ const Auction = () => {
         'Participate in online auctions for premium bedsheets and linens from Parekh Linen.',
         'auction, online bidding, premium linens'
     );
-    
+
     const [auctionItems] = useState([
         {
             id: 1,
@@ -116,18 +116,18 @@ const Auction = () => {
             <div className="max-w-7xl mx-auto px-6">
 
                 {/* Header */}
-                <div className="text-center mb-16">
+                {/* <div className="text-center mb-16">
                     <h2 className="text-4xl font-serif text-[#2C3E50] mb-4">
                         <span className="lowercase">e</span>-Auction
                     </h2>
                     <p className="text-gray-500 text-lg mb-8">
                         Bid for premium linens and exclusive collections
                     </p>
-                </div>
+                </div> */}
 
-                <section className="py-20 bg-gray-50 px-6">
+                <section className="py-20 pt-5 bg-gray-50 px-6">
                     <div className="max-w-4xl mx-auto">
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             className="bg-white shadow-2xl border-t-4 border-[#C0A080] rounded-b-xl overflow-hidden"
@@ -139,9 +139,9 @@ const Auction = () => {
                             </div>
 
                             {isSubmitted ? (
-                                <motion.div 
-                                    initial={{ opacity: 0, scale: 0.95 }} 
-                                    animate={{ opacity: 1, scale: 1 }} 
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.95 }}
+                                    animate={{ opacity: 1, scale: 1 }}
                                     transition={{ duration: 0.4 }}
                                     className="p-16 text-center"
                                 >
@@ -167,11 +167,11 @@ const Auction = () => {
                                         {/* 1. Name of the Participant */}
                                         <div className="flex flex-col gap-2">
                                             <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Name of the Participant *</label>
-                                            <input 
-                                                type="text" 
+                                            <input
+                                                type="text"
                                                 {...register("participantName", { required: true })}
-                                                className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold uppercase" 
-                                                placeholder="Full Name" 
+                                                className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold uppercase"
+                                                placeholder="Full Name"
                                             />
                                             {errors.participantName && <span className="text-red-500 text-[10px]">Required</span>}
                                         </div>
@@ -179,11 +179,11 @@ const Auction = () => {
                                         {/* 2. Legal Name of the Business */}
                                         <div className="flex flex-col gap-2">
                                             <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Legal Name of the Business *</label>
-                                            <input 
-                                                type="text" 
+                                            <input
+                                                type="text"
                                                 {...register("legalBusinessName", { required: true })}
-                                                className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold uppercase" 
-                                                placeholder="Company Name" 
+                                                className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold uppercase"
+                                                placeholder="Company Name"
                                             />
                                             {errors.legalBusinessName && <span className="text-red-500 text-[10px]">Required</span>}
                                         </div>
@@ -192,11 +192,11 @@ const Auction = () => {
                                     {/* 3. Business Address with Pin code */}
                                     <div className="flex flex-col gap-2">
                                         <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Business Address with Pin code *</label>
-                                        <input 
-                                            type="text" 
+                                        <input
+                                            type="text"
                                             {...register("businessAddress", { required: true })}
-                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold uppercase" 
-                                            placeholder="Complete Office Address & Pincode" 
+                                            className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold uppercase"
+                                            placeholder="Complete Office Address & Pincode"
                                         />
                                         {errors.businessAddress && <span className="text-red-500 text-[10px]">Required</span>}
                                     </div>
@@ -205,22 +205,22 @@ const Auction = () => {
                                         {/* 4. GST No. */}
                                         <div className="flex flex-col gap-2">
                                             <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">GST No.</label>
-                                            <input 
-                                                type="text" 
+                                            <input
+                                                type="text"
                                                 {...register("gstNo")}
-                                                className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold uppercase" 
-                                                placeholder="GSTIN Number" 
+                                                className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold uppercase"
+                                                placeholder="GSTIN Number"
                                             />
                                         </div>
 
                                         {/* 5. Mobile No. */}
                                         <div className="flex flex-col gap-2">
                                             <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Mobile No. *</label>
-                                            <input 
-                                                type="tel" 
+                                            <input
+                                                type="tel"
                                                 {...register("mobileNo", { required: true })}
-                                                className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold" 
-                                                placeholder="+91 00000 00000" 
+                                                className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold"
+                                                placeholder="+91 00000 00000"
                                             />
                                             {errors.mobileNo && <span className="text-red-500 text-[10px]">Required</span>}
                                         </div>
@@ -228,11 +228,11 @@ const Auction = () => {
                                         {/* 6. Email Id */}
                                         <div className="flex flex-col gap-2">
                                             <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Email Id *</label>
-                                            <input 
-                                                type="email" 
+                                            <input
+                                                type="email"
                                                 {...register("email", { required: true })}
-                                                className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold" 
-                                                placeholder="official@email.com" 
+                                                className="border-b-2 border-gray-100 py-2 focus:border-[#C0A080] outline-none transition-colors text-sm font-bold"
+                                                placeholder="official@email.com"
                                             />
                                             {errors.email && <span className="text-red-500 text-[10px]">Required</span>}
                                         </div>
@@ -242,10 +242,10 @@ const Auction = () => {
                                     <div className="flex flex-col gap-4">
                                         <label className="text-[10px] uppercase tracking-widest font-black text-gray-400">Upload GST Certificate (PDF/Image)</label>
                                         <div className="relative border-2 border-dashed border-gray-100 p-10 rounded-xl hover:border-[#C0A080] transition-all bg-gray-50 flex flex-col items-center justify-center gap-2 group cursor-pointer">
-                                            <input 
-                                                type="file" 
+                                            <input
+                                                type="file"
                                                 {...register("gstCertificate")}
-                                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" 
+                                                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                                             />
                                             <svg className="w-8 h-8 text-gray-300 group-hover:text-[#C0A080] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a2 2 0 002 2h12 a2 2 0 002-2v-1M16 8l-4-4m0 0L8 8m4-4v12" />
@@ -256,7 +256,7 @@ const Auction = () => {
 
                                     {/* Submit Button */}
                                     <div className="pt-6">
-                                        <motion.button 
+                                        <motion.button
                                             type="submit"
                                             disabled={loading}
                                             whileHover={{ scale: loading ? 1 : 1.02 }}

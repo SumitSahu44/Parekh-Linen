@@ -39,7 +39,7 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-return (
+  return (
     <Router>
       {/* 4. Agar loading true hai toh Loader dikhao, varna content */}
       {loading ? (
@@ -71,7 +71,7 @@ return (
             </Routes>
 
             <LiveChat />
-            <FloatingWhatsApp phoneNumber="+91XXXXXXXXXX" />
+            <FloatingWhatsApp phoneNumber="+916353778329" />
             <Footer />
           </div>
         </>

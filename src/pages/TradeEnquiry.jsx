@@ -103,10 +103,10 @@ const TradeEnquiry = () => {
                                 <div className="space-y-4 text-[#2C3E50]">
                                     <p className="text-sm leading-relaxed">
                                         <strong>Headquarters:</strong><br />
-                                        KOLKATA, WB, India
+                                        KOLKATA, WB, INDIA
 
                                     </p>
-                                    <p className="text-sm"><strong>Email:</strong> exports@parekhlinen.com</p>
+                                    <p className="text-sm"><strong>Email: </strong>trade-enquiry@parekhlinen.com</p>
                                     <p className="text-sm"><strong>Support:</strong> 6353778329</p>
                                 </div>
                             </div>

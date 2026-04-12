@@ -9,7 +9,7 @@ const MediaGallery = () => {
         'View our media gallery showcasing manufacturing facilities, products, events, and company culture at Parekh Linen.',
         'media gallery, manufacturing, photos, videos, facility tour'
     );
-    
+
     const [activeCategory, setActiveCategory] = useState('all');
 
     const media = [
@@ -79,8 +79,8 @@ const MediaGallery = () => {
         { value: 'testimonials', label: 'Testimonials' }
     ];
 
-    const filteredMedia = activeCategory === 'all' 
-        ? media 
+    const filteredMedia = activeCategory === 'all'
+        ? media
         : media.filter(item => item.category === activeCategory);
 
     return (
@@ -103,11 +103,10 @@ const MediaGallery = () => {
                         <button
                             key={cat.value}
                             onClick={() => setActiveCategory(cat.value)}
-                            className={`px-6 py-2 text-xs font-semibold tracking-widest uppercase transition-all duration-300 ${
-                                activeCategory === cat.value
+                            className={`px-6 py-2 text-xs font-semibold tracking-widest uppercase transition-all duration-300 ${activeCategory === cat.value
                                     ? 'bg-[#2C3E50] text-white'
                                     : 'border border-gray-300 text-gray-600 hover:border-[#C0A080] hover:text-[#C0A080]'
-                            }`}
+                                }`}
                         >
                             {cat.label}
                         </button>
@@ -115,7 +114,7 @@ const MediaGallery = () => {
                 </div>
 
                 {/* Grid */}
-                <motion.div 
+                <motion.div
                     layout
                     className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
                 >

@@ -18,27 +18,27 @@ const Navbar = () => {
     // Close mobile menu on route change
     useEffect(() => { setIsOpen(false); }, [location]);
 
-  const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About Us', path: '/about' },
-    { name: 'Contact Us', path: '/contact' },
-    { name: 'Products', path: '/products' }, // Fabrics, Bedsheets & Linen अंदर
-    { name: 'Product Gallery', path: '/media-gallery' },
-    { name: 'Our Management', path: '/management' },
-     
-];
+    const navLinks = [
+        { name: 'Home', path: '/' },
+        { name: 'About Us', path: '/about' },
+        { name: 'Contact Us', path: '/contact' },
+        { name: 'Products', path: '/products' }, // Fabrics, Bedsheets & Linen अंदर
+        { name: 'Media Gallery', path: '/media-gallery' },
+        { name: 'Our Management', path: '/management' },
+
+    ];
     const moreLinks = [
-    { name: 'e-Quotation', path: '/quotation' },
-    { name: 'e-Auction', path: '/auction' },
-    { name: 'Tender & Contract', path: '/tender-contract' },
-    { name: 'Careers', path: '/career' },
-    { name: 'Circular', path: '/circular' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'Reviews', path: '/reviews' },
-    { name: 'Visit Appointment', path: '/appointment' }, // e-Form
-    { name: 'Textile Associates', path: '/india-map' },
-   
-];
+        { name: 'e-Quotation', path: '/quotation' },
+        { name: 'e-Auction', path: '/auction' },
+        { name: 'Tender & Contract', path: '/tender-contract' },
+        { name: 'Careers', path: '/career' },
+        { name: 'Circular', path: '/circular' },
+        { name: 'Blog', path: '/blog' },
+        { name: 'Reviews', path: '/reviews' },
+        { name: 'Visit Appointment', path: '/appointment' }, // e-Form
+        { name: 'Textile Associates', path: '/india-map' },
+
+    ];
     // Color tokens based on scroll state
     const textMain = isScrolled ? 'text-[#1A252F]' : 'text-white';
     const textMuted = isScrolled ? 'text-gray-600' : 'text-white/90';
@@ -55,10 +55,18 @@ const Navbar = () => {
             <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 flex justify-between items-center">
 
                 {/* ── Logo ── */}
-                <Link to="/" className={`group flex items-center gap-3 transition-colors duration-500 ${textMain}`}>
-                    <div className="w-9 h-9 md:w-11 md:h-11 flex items-center justify-center rounded-xl bg-[#C0A080] text-white font-bold text-lg md:text-xl shadow-md shrink-0">
-                        P
+                <Link to="/" className={`group flex items-center gap-2 transition-colors duration-500 ${textMain}`}>
+
+                    {/* 🔥 Logo Image */}
+                    <div className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-xl shrink-0">
+                        <img
+                            src="/6.png"
+                            alt="Logo"
+                            className="w-full h-full object-contain"
+                        />
                     </div>
+
+                    {/* Text */}
                     <div className="flex flex-col leading-tight">
                         <span className="text-lg md:text-xl font-serif font-bold uppercase tracking-wide">
                             PAREKH <span className="font-light">LINEN</span>
@@ -67,8 +75,8 @@ const Navbar = () => {
                             KOLKATA, WB, India
                         </span>
                     </div>
-                </Link>
 
+                </Link>
                 {/* ── Desktop Nav ── */}
                 <div className="hidden lg:flex items-center gap-6 xl:gap-8">
                     {navLinks.map((link) => {
