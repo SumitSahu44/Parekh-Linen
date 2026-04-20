@@ -56,7 +56,7 @@ const locations = [
   { id: 2, name: "Parekh Silk", city: "Surat" },
   { id: 3, name: "Parekh Rayon", city: "Raipur" },
   { id: 4, name: "Parekh Linen", city: "Kolkata" },
-  { id: 5, name: "Parekh e-Trade Market", city: "Hyderabad" },
+  { id: 5, name: "Parekh e-Trade Market (Textile)", city: "Hyderabad" },
   { id: 6, name: "Parekh Chamber of Textile", city: "Bangalore" },
   { id: 7, name: "Parekh Southern Polyfabrics", city: "Chennai" },
 ];

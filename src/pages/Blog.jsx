@@ -45,26 +45,43 @@ const Blog = () => {
     </h2>
     
     {/* New Campaign Line */}
-    <div className="relative py-4">
-        <p className="text-gray-500 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto font-light italic">
-            "Join and participate in our nation-wide campaign to digitalize the Textile Sector, one of the largest sectors of India."
+   <div className="relative py-12 px-6 max-w-4xl mx-auto overflow-hidden">
+    {/* Subtle Background Glow for Readability */}
+    <div className="absolute inset-0 bg-white/40 backdrop-blur-sm rounded-[2rem] -z-10 border border-white/20 shadow-sm" />
+
+    <div className="relative text-center -mt-10">
+        {/* Quote Icon - Optional but looks premium */}
+        <div className="text-[#C0A080] text-4xl font-serif opacity-50 italic">"</div>
+        
+        <p className="text-slate-800 text-lg md:text-2xl leading-relaxed max-w-3xl mx-auto font-medium italic tracking-tight drop-shadow-sm">
+            Join and participate in our nation-wide campaign to digitalize the Textile Sector, one of the largest sectors of India.
         </p>
         
         {/* HC Parekh Signature Section */}
-        <div className="mt-6 flex flex-col items-center">
-            <h4 className="text-[#2C3E50] font-serif text-xl font-bold tracking-wide">
+        <div className="mt-10 flex flex-col items-center">
+            {/* Horizontal Divider */}
+            <div className="w-12 h-[2px] bg-[#C0A080] mb-4 opacity-50" />
+            
+            <h4 className="text-[#1A252F] font-serif text-2xl font-black tracking-wide uppercase">
                 HC Parekh
             </h4>
-            <p className="text-[#C0A080] text-sm uppercase tracking-[0.2em] font-medium mt-1">
+            
+            <p className="text-slate-600 text-[11px] md:text-xs uppercase tracking-[0.3em] font-black mt-2">
                 Textile Manufacturer & Entrepreneur
             </p>
-            <p className="text-gray-400 text-xs mt-1 font-sans">
-                India
-            </p>
+            
+            <div className="flex items-center gap-2 mt-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+                <p className="text-slate-500 text-[10px] font-black tracking-widest uppercase">
+                    India
+                </p>
+                <span className="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+            </div>
         </div>
     </div>
+</div>
     
-    <div className="mt-10 flex justify-center items-center gap-3">
+    <div className="mt-5 flex justify-center items-center gap-3">
         <div className="w-16 h-[1px] bg-[#C0A080]/40"></div>
         <div className="w-2 h-2 rounded-full bg-[#C0A080]"></div>
         <div className="w-16 h-[1px] bg-[#C0A080]/40"></div>

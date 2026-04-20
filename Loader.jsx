@@ -65,7 +65,7 @@ const Loader = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.5 }}
-                        className="mt-3 text-[9px] text-[#C0A080] font-bold uppercase tracking-[0.5em]"
+                        className="mt-3 text-[12px] text-[#C0A080] font-bold uppercase tracking-[0.5em]"
                     >
                         KOLKATA, WB, India
                     </motion.p>

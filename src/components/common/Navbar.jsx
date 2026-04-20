@@ -10,23 +10,22 @@ const Navbar = () => {
     const location = useLocation();
 
     useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.scrollY > 50);
+        const handleScroll = () => setIsScrolled(window.scrollY > 20);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Close mobile menu on route change
     useEffect(() => { setIsOpen(false); }, [location]);
 
     const navLinks = [
         { name: 'Home', path: '/' },
         { name: 'About Us', path: '/about' },
         { name: 'Contact Us', path: '/contact' },
-        { name: 'Products', path: '/products' }, // Fabrics, Bedsheets & Linen अंदर
+        { name: 'Products', path: '/products' },
         { name: 'Media Gallery', path: '/media-gallery' },
         { name: 'Our Management', path: '/management' },
-
     ];
+
     const moreLinks = [
         { name: 'e-Quotation', path: '/quotation' },
         { name: 'e-Auction', path: '/auction' },
@@ -35,48 +34,44 @@ const Navbar = () => {
         { name: 'Circular', path: '/circular' },
         { name: 'Blog', path: '/blog' },
         { name: 'Reviews', path: '/reviews' },
-        { name: 'Visit with Appointment', path: '/appointment' }, // e-Form
+        { name: 'Visit with Appointment', path: '/appointment' },
         { name: 'Our Textile Associates', path: '/india-map' },
-
     ];
-    // Color tokens based on scroll state
-    const textMain = isScrolled ? 'text-[#1A252F]' : 'text-white';
-    const textMuted = isScrolled ? 'text-gray-600' : 'text-white/90';
+
+    // Fixed Colors for consistent visibility
+    const textMain = 'text-[#1A252F]';
+    const textMuted = 'text-gray-600';
     const textHover = 'hover:text-[#C0A080]';
-    const hamColor = isScrolled ? 'bg-[#1A252F]' : 'bg-white';
+    const hamColor = 'bg-[#1A252F]';
 
     return (
         <nav
-            className={`fixed w-full z-[100] transition-all duration-500 ease-in-out ${isScrolled
-                ? 'bg-white/95 backdrop-blur-xl shadow-lg py-3 border-b border-gray-100'
-                : 'bg-black/20 backdrop-blur-sm py-5'
-                }`}
+            className={`fixed w-full z-[100] transition-all duration-300 ease-in-out bg-white/95 backdrop-blur-md border-b border-gray-100 ${
+                isScrolled ? 'py-2 shadow-md' : 'py-4 shadow-sm'
+            }`}
         >
             <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 flex justify-between items-center">
 
                 {/* ── Logo ── */}
-                <Link to="/" className={`group flex items-center gap-2 transition-colors duration-500 ${textMain}`}>
-
-                    {/* 🔥 Logo Image */}
-                    <div className="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-xl shrink-0">
+                <Link to="/" className={`group flex items-center gap-2 ${textMain}`}>
+                    <div className="w-11 h-11 md:w-13 md:h-13 flex items-center justify-center rounded-xl shrink-0 bg-slate-50 border border-slate-100">
                         <img
                             src="/6.png"
                             alt="Logo"
-                            className="w-full h-full object-contain"
+                            className="w-full h-full object-contain p-1"
                         />
                     </div>
 
-                    {/* Text */}
                     <div className="flex flex-col leading-tight">
                         <span className="text-lg md:text-xl font-serif font-bold uppercase tracking-wide">
                             PAREKH <span className="font-light">LINEN</span>
                         </span>
-                        <span className={`text-[9px] md:text-[10px] tracking-[0.35em] font-bolder opacity-70 group-hover:text-[#C0A080] uppercase transition-colors duration-300`}>
+                        <span className={`text-[9px] md:text-[10px] text-black tracking-[0.35em] font-bold opacity-70 group-hover:text-[#C0A080] uppercase transition-colors duration-300`}>
                             KOLKATA, WB, India
                         </span>
                     </div>
-
                 </Link>
+
                 {/* ── Desktop Nav ── */}
                 <div className="hidden lg:flex items-center gap-6 xl:gap-8">
                     {navLinks.map((link) => {
@@ -85,7 +80,7 @@ const Navbar = () => {
                             <Link
                                 key={link.name}
                                 to={link.path}
-                                className={`relative text-[10px] xl:text-[11px] uppercase tracking-[0.22em] font-semibold transition-colors duration-300 group ${textMuted} ${textHover}`}
+                                className={`relative text-[10px] xl:text-[11px] uppercase tracking-[0.22em] font-black transition-colors duration-300 group ${isActive ? 'text-[#C0A080]' : textMuted} ${textHover}`}
                             >
                                 {link.name}
                                 <span className={`absolute -bottom-1.5 left-0 h-[1.5px] bg-[#C0A080] transition-all duration-400 ${isActive ? 'w-full' : 'w-0 group-hover:w-full'}`} />
@@ -101,7 +96,7 @@ const Navbar = () => {
                         onMouseLeave={() => setIsMoreOpen(false)}
                     >
                         <button
-                            className={`flex items-center gap-1.5 text-[10px] xl:text-[11px] uppercase tracking-[0.22em] font-semibold transition-colors duration-300 ${textMuted} ${textHover}`}
+                            className={`flex items-center gap-1.5 text-[10px] xl:text-[11px] uppercase tracking-[0.22em] font-black transition-colors duration-300 ${textMuted} ${textHover}`}
                         >
                             More
                             <svg
@@ -125,11 +120,11 @@ const Navbar = () => {
                                         <Link
                                             key={link.name}
                                             to={link.path}
-                                            className="block px-6 py-3 text-[11px] uppercase tracking-widest font-semibold text-gray-700 hover:bg-[#C0A080] hover:text-white transition-colors whitespace-nowrap"
+                                            className="block px-6 py-3 text-[11px] uppercase tracking-widest font-bold text-gray-700 hover:bg-[#C0A080] hover:text-white transition-colors whitespace-nowrap border-b border-gray-50 last:border-0"
                                         >
                                             {link.name.startsWith('e-') ? (
                                                 <>
-                                                    <span className="lowercase">e</span>-{link.name.substring(2)}
+                                                    <span className="lowercase italic font-serif">e</span>-{link.name.substring(2)}
                                                 </>
                                             ) : (
                                                 link.name
@@ -144,19 +139,15 @@ const Navbar = () => {
                     {/* CTA */}
                     <Link
                         to="/trade-enquiry"
-                        className={`ml-2 px-5 xl:px-7 py-2.5 text-[10px] font-bold uppercase tracking-[0.18em] border rounded-sm transition-all duration-400 ${isScrolled
-                            ? 'bg-[#2C3E50] text-white border-[#2C3E50] hover:bg-transparent hover:text-[#2C3E50]'
-                            : 'bg-white text-[#2C3E50] border-white hover:bg-transparent hover:text-white'
-                            }`}
+                        className="ml-2 px-5 xl:px-7 py-2.5 text-[10px] font-black uppercase tracking-[0.18em] border rounded-sm transition-all duration-400 bg-[#2C3E50] text-white border-[#2C3E50] hover:bg-transparent hover:text-[#2C3E50]"
                     >
-                        <span className="lowercase">e</span>-Trade Enquiry
+                        <span className="lowercase italic font-serif">e</span>-Trade Enquiry
                     </Link>
                 </div>
 
                 {/* ── Hamburger ── */}
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    aria-label="Toggle menu"
                     className="lg:hidden flex flex-col justify-center gap-[5px] p-2 focus:outline-none"
                 >
                     <span className={`h-[2px] w-6 transition-all duration-300 origin-center ${hamColor} ${isOpen ? 'rotate-45 translate-y-[7px]' : ''}`} />
@@ -173,32 +164,28 @@ const Navbar = () => {
                         animate={{ opacity: 1, x: 0 }}
                         exit={{ opacity: 0, x: '100%' }}
                         transition={{ type: 'tween', duration: 0.35 }}
-                        className="fixed inset-0 h-screen w-screen bg-[#1A252F] z-[150] lg:hidden overflow-y-auto"
+                        className="fixed inset-0 h-screen w-screen bg-white z-[150] lg:hidden overflow-y-auto"
                     >
-                        {/* Close button */}
                         <button
                             onClick={() => setIsOpen(false)}
-                            className="absolute top-5 right-5 text-white/60 hover:text-white text-3xl leading-none p-2"
+                            className="absolute top-5 right-5 text-slate-900 text-3xl p-2"
                         >
                             ×
                         </button>
 
-                        <div className="flex flex-col items-center justify-center min-h-screen px-8 py-20 gap-0">
-
-                            {/* Main Links */}
+                        <div className="flex flex-col items-center justify-center min-h-screen px-8 py-20">
                             <div className="flex flex-col items-center gap-7 w-full">
                                 {navLinks.map((link, i) => (
                                     <motion.div
                                         key={link.name}
-                                        initial={{ y: 24, opacity: 0 }}
+                                        initial={{ y: 20, opacity: 0 }}
                                         animate={{ y: 0, opacity: 1 }}
-                                        transition={{ delay: 0.05 + i * 0.07, duration: 0.35 }}
+                                        transition={{ delay: i * 0.05 }}
                                     >
                                         <Link
                                             to={link.path}
                                             onClick={() => setIsOpen(false)}
-                                            className={`text-2xl sm:text-3xl font-serif tracking-widest transition-colors duration-300 ${location.pathname === link.path ? 'text-[#C0A080]' : 'text-white hover:text-[#C0A080]'
-                                                }`}
+                                            className={`text-2xl font-serif font-black tracking-widest ${location.pathname === link.path ? 'text-[#C0A080]' : 'text-slate-900'}`}
                                         >
                                             {link.name}
                                         </Link>
@@ -206,49 +193,29 @@ const Navbar = () => {
                                 ))}
                             </div>
 
-                            {/* More Section */}
-                            <motion.div
-                                initial={{ y: 24, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ delay: 0.05 + navLinks.length * 0.07, duration: 0.35 }}
-                                className="w-full border-t border-white/15 pt-8 mt-8"
-                            >
-                                <p className="text-center text-[#C0A080] text-xs uppercase tracking-[0.4em] mb-6 font-bold">More</p>
-                                <div className="grid grid-cols-2 gap-4 text-center">
+                            <div className="w-full border-t border-slate-100 pt-8 mt-8">
+                                <p className="text-center text-[#C0A080] text-[10px] uppercase tracking-[0.4em] mb-6 font-black">More Resources</p>
+                                <div className="grid grid-cols-1 gap-4 text-center">
                                     {moreLinks.map((link) => (
                                         <Link
                                             key={link.name}
                                             to={link.path}
                                             onClick={() => setIsOpen(false)}
-                                            className="text-white/80 text-sm tracking-wider hover:text-[#C0A080] transition-colors py-1"
+                                            className="text-slate-600 text-sm font-bold tracking-widest py-1"
                                         >
-                                            {link.name.startsWith('e-') ? (
-                                                <>
-                                                    <span className="lowercase">e</span>-{link.name.substring(2)}
-                                                </>
-                                            ) : (
-                                                link.name
-                                            )}
+                                            {link.name}
                                         </Link>
                                     ))}
                                 </div>
-                            </motion.div>
+                            </div>
 
-                            {/* CTA */}
-                            <motion.div
-                                initial={{ y: 24, opacity: 0 }}
-                                animate={{ y: 0, opacity: 1 }}
-                                transition={{ delay: 0.05 + (navLinks.length + 1) * 0.07, duration: 0.35 }}
-                                className="mt-10"
+                            <Link
+                                to="/trade-enquiry"
+                                onClick={() => setIsOpen(false)}
+                                className="mt-10 w-full py-4 border-2 border-[#2C3E50] bg-[#2C3E50] text-white text-center uppercase text-xs font-black tracking-widest shadow-xl"
                             >
-                                <Link
-                                    to="/trade-enquiry"
-                                    onClick={() => setIsOpen(false)}
-                                    className="block px-10 py-4 border-2 border-[#C0A080] text-[#C0A080] uppercase text-sm font-bold tracking-[0.3em] hover:bg-[#C0A080] hover:text-white transition-all duration-300 text-center"
-                                >
-                                    <span className="lowercase">e</span>-Trade Enquiry
-                                </Link>
-                            </motion.div>
+                                e-Trade Enquiry
+                            </Link>
                         </div>
                     </motion.div>
                 )}
