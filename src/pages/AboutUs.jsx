@@ -36,7 +36,7 @@ const AboutUs = () => {
               viewport={{ once: true }}
               className="text-gray-600 leading-relaxed text-lg md:text-xl font-medium uppercase tracking-wide italic border-t md:border-t-0 md:border-l border-gray-200 pt-8 md:pt-0 md:pl-12"
             >
-              "Parekh Linen is a trusted manufacturers and supplier of the high standard
+              "Parekh Linen is a trusted manufacturer & supplier of the high standard
               quality of the Bedsheets and Linen, from lower range to higher range with
               different TC at reasonable and low price range with best and premium quality,
               with Quality Assurance and Quality Seal."

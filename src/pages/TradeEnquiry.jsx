@@ -137,7 +137,7 @@ const TradeEnquiry = () => {
                                     </div>
                                     <h3 className="text-3xl font-serif text-[#2C3E50] mb-4">Thank You!</h3>
                                     <p className="text-gray-500 max-w-md mx-auto leading-relaxed">
-                                        Your professional inquiry has been received successfully. Our team will review your details and contact you shortly.
+                                        Your professional enquiry has been received successfully. Our team will review your details and contact you shortly.
                                     </p>
                                 </motion.div>
                             ) : (
@@ -220,9 +220,9 @@ const TradeEnquiry = () => {
                                         {errors.email && <span className="text-red-500 text-[10px]">Required</span>}
                                     </div>
 
-                                    {/* 7. Inquiry Type/}
+                                    {/* 7. enquiry Type/}
                                     <div className="flex flex-col gap-2 md:col-span-2">
-                                        <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Inquiry Type *</label>
+                                        <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400">Enquiry Type *</label>
                                         <select
                                             {...register("enquiryType", { required: true })}
                                             className="border-b-2 border-gray-100 py-2 bg-transparent outline-none focus:border-[#C0A080] text-sm font-medium cursor-pointer uppercase"
@@ -258,7 +258,7 @@ const TradeEnquiry = () => {
                                             whileTap={{ scale: loading ? 1 : 0.98 }}
                                             className="w-full bg-[#C0A080] text-white py-5 text-[11px] font-bold uppercase tracking-[0.5em] transition-all shadow-xl disabled:opacity-70 disabled:cursor-not-allowed"
                                         >
-                                            {loading ? "Sending..." : "Send Professional Inquiry"}
+                                            {loading ? "Sending..." : "Send Professional Enquiry"}
                                         </motion.button>
                                     </div>
                                 </form>

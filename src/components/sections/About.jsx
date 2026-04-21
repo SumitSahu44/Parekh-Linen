@@ -17,7 +17,7 @@ const About = () => {
 
 </h2>
                     <p className="text-gray-600 leading-relaxed mb-6">
-                       Parekh Linen is a trusted manufacturers and supplier of the high standard
+                       Parekh Linen is a trusted manufacturer & supplier of the high standard
 quality of the Bedsheets and Linen, from lower range to higher range with
 different TC at reasonable and low price range with best and premium quality,
 with Quality Assurance and Quality Seal.

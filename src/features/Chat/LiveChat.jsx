@@ -40,7 +40,7 @@ const LiveChat = () => {
             } else if (input.includes("contact") || input.includes("help") || input.includes("address")) {
                 reply.text = "You can find our contact details and office location on the Contact page. We are also available via WhatsApp for direct support.";
             } else {
-                reply.text = "I'm sorry, I'm still learning. For specific inquiries about our textiles, please visit our Trade Enquiry or Contact pages.";
+                reply.text = "I'm sorry, I'm still learning. For specific enquiries about our textiles, please visit our Trade Enquiry or Contact pages.";
             }
 
             setMessages(prev => [...prev, reply]);
@@ -49,7 +49,7 @@ const LiveChat = () => {
     };
 
     const handleOptionClick = (optionId) => {
-        const userChoice = { from: "user", text: optionId === "collections" ? "Tell me about your collections" : optionId === "business" ? "I have a business inquiry" : "I'm looking for job opportunities" };
+        const userChoice = { from: "user", text: optionId === "collections" ? "Tell me about your collections" : optionId === "business" ? "I have a business enquiry" : "I'm looking for job opportunities" };
         setMessages(prev => [...prev, userChoice]);
 
         setIsTyping(true);
@@ -58,7 +58,7 @@ const LiveChat = () => {
             if (optionId === "collections") {
                 botResponse.text = "Our signature collection features premium linens and exquisite 1000-thread count Egyptian cotton, designed for international quality standards.";
             } else if (optionId === "business") {
-                botResponse.text = "We welcome wholesale and export inquiries. Please fill out the form on our 'Trade Enquiry' page, and our export team will contact you shortly.";
+                botResponse.text = "We welcome wholesale and export enquiries. Please fill out the form on our 'Trade Enquiry' page, and our export team will contact you shortly.";
             } else if (optionId === "careers") {
                 botResponse.text = "Join our legacy! We post all our current openings on the 'Careers' page. You can apply directly through our online portal.";
             }

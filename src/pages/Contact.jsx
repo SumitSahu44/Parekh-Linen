@@ -5,7 +5,7 @@ import { Mail, Phone, MapPin, Clock, Briefcase, Headset, ArrowRight } from 'luci
 const Contact = () => {
     useSEO(
         'Contact Us',
-        'Get in touch with Parekh Linen. Reach out for inquiries, quotations, and trade requests. Located in KOLKATA, WB, India.',
+        'Get in touch with Parekh Linen. Reach out for enquiries, quotations, and trade requests. Located in KOLKATA, WB, India.',
         'contact parekh linen, email, phone, address, Kolkata'
     );
 
@@ -66,7 +66,7 @@ const Contact = () => {
                         </div>
                     </div>
 
-                    {/* RIGHT: Inquiry & Care Details (Replaced Form) */}
+                    {/* RIGHT: Enquiry & Care Details (Replaced Form) */}
                     <div className="bg-[#2C3E50] p-12 rounded-2xl shadow-2xl relative overflow-hidden">
                         {/* Decorative Background Element */}
                         <div className="absolute top-0 right-0 w-32 h-32 bg-[#C0A080]/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>

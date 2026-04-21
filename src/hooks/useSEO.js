@@ -11,7 +11,7 @@ const useSEO = (title, description, keywords) => {
             metaDescription.name = 'description';
             document.head.appendChild(metaDescription);
         }
-        metaDescription.content = description || 'Parekh Linen - Leading manufacturers and suppliers of premium bedsheets and fabrics in Kolkata, West Bengal.';
+        metaDescription.content = description || 'Parekh Linen - Leading manufacturer and supplier of premium bedsheets and fabrics in Kolkata, West Bengal.';
         
         // Update or create meta keywords
         let metaKeywords = document.querySelector('meta[name="keywords"]');
@@ -37,7 +37,7 @@ const useSEO = (title, description, keywords) => {
             ogDescription.setAttribute('property', 'og:description');
             document.head.appendChild(ogDescription);
         }
-        ogDescription.content = description || 'Parekh Linen - Leading manufacturers and suppliers of premium bedsheets and fabrics in Kolkata, West Bengal.';
+        ogDescription.content = description || 'Parekh Linen - Leading manufacturer and supplier of premium bedsheets and fabrics in Kolkata, West Bengal.';
         
     }, [title, description, keywords]);
 };

@@ -53,7 +53,7 @@ const Footer = () => {
 
           {/* Description */}
           <p className="text-gray-400 text-sm leading-relaxed mb-6">
-            Leading manufacturers and suppliers of premium bedsheets and fabrics in Kolkata. Quality you can feel.
+            Leading manufacturer and supplier of premium bedsheets and fabrics in Kolkata. Quality you can feel.
           </p>
 
           {/* Social Icons */}
