@@ -46,9 +46,8 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed w-full z-[100] transition-all duration-300 ease-in-out bg-white/95 backdrop-blur-md border-b border-gray-100 ${
-                isScrolled ? 'py-2 shadow-md' : 'py-4 shadow-sm'
-            }`}
+            className={`fixed w-full z-[100] transition-all duration-300 ease-in-out bg-white/95 backdrop-blur-md border-b border-gray-100 ${isScrolled ? 'py-2 shadow-md' : 'py-4 shadow-sm'
+                }`}
         >
             <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-10 flex justify-between items-center">
 
@@ -212,7 +211,7 @@ const Navbar = () => {
                             <Link
                                 to="/trade-enquiry"
                                 onClick={() => setIsOpen(false)}
-                                className="mt-10 w-full py-4 border-2 border-[#2C3E50] bg-[#2C3E50] text-white text-center uppercase text-xs font-black tracking-widest shadow-xl"
+                                className="mt-10 w-full py-4 border-2 border-[#2C3E50] bg-[#2C3E50] text-white text-center text-xs font-black tracking-widest shadow-xl"
                             >
                                 e-Trade Enquiry
                             </Link>

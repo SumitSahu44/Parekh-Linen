@@ -176,7 +176,7 @@ const Appointment = () => {
                                 {/* Identity Verification Section */}
                                 <div className="grid md:grid-cols-2 gap-6 p-4 bg-white border border-gray-100 rounded-sm">
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Identity Document * (Roll-down)</label>
+                                        <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Identity Document *</label>
                                         <select
                                             {...register("proofType", { required: true })}
                                             className="w-full p-3 bg-gray-50 border-none text-sm outline-none focus:ring-1 ring-[#C0A080]"

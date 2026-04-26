@@ -8,7 +8,7 @@ const CustomerReviews = () => {
         'Read testimonials and reviews from satisfied customers and business partners of Parekh Linen.',
         'reviews, testimonials, customer feedback, parekh linen quality'
     );
-    
+
     const [reviews] = useState([
         {
             name: "Rajesh Kumar",
@@ -56,7 +56,7 @@ const CustomerReviews = () => {
     return (
         <div className="pt-32 pb-20 bg-[#FDFBF7]">
             <div className="max-w-6xl mx-auto px-6">
-                
+
                 {/* Heading */}
                 <div className="text-center mb-16">
                     <h2 className="text-4xl font-serif text-[#2C3E50] mb-4">
@@ -70,13 +70,13 @@ const CustomerReviews = () => {
                 {/* Reviews Grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {reviews.map((review, idx) => (
-                        <div 
+                        <div
                             key={idx}
                             className="bg-white p-8 border border-gray-200 hover:border-[#C0A080] hover:shadow-2xl transition-all duration-300"
                         >
                             {/* Top Section */}
                             <div className="flex items-center justify-between mb-6">
-                                
+
                                 {/* Avatar */}
                                 <div className="w-12 h-12 flex items-center justify-center rounded-full bg-[#C0A080] text-white font-bold">
                                     {getInitials(review.name)}
@@ -89,12 +89,12 @@ const CustomerReviews = () => {
                                     ))}
                                 </div>
                             </div>
-                            
+
                             {/* Review Text */}
                             <p className="text-gray-600 leading-relaxed mb-6 italic">
                                 "{review.text}"
                             </p>
-                            
+
                             {/* User Info */}
                             <div className="border-t border-gray-200 pt-4">
                                 <p className="font-semibold text-[#2C3E50]">
@@ -116,9 +116,9 @@ const CustomerReviews = () => {
                     <p className="text-gray-300 mb-8">
                         Have you experienced Parekh Linen's quality? We'd love to hear from you!
                     </p>
-                    <button className="px-8 py-4 bg-[#C0A080] text-[#2C3E50] font-bold uppercase tracking-widest hover:bg-white transition-colors duration-300">
+                    {/* <button className="px-8 py-4 bg-[#C0A080] text-[#2C3E50] font-bold uppercase tracking-widest hover:bg-white transition-colors duration-300">
                         Write a Review
-                    </button>
+                    </button> */}
                 </div>
 
             </div>
